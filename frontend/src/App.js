@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import logo from './logo.svg';
 import inbox from './inbox.jpg'
 import email from './email.jpg'
@@ -18,6 +18,33 @@ function App() {
   const [office, setOffice] = useState(false);
   const [mail, setMail] = useState(false);
 
+  console.log(outlook)
+  console.log(office)
+  console.log(mail)
+
+  const handleOutlook = () => {
+    setOutlook(prev => !prev)
+    setOffice(false)
+    setMail(false)
+  }
+
+  const handleOffice = () => {
+    setOffice(prev => !prev)
+    setOutlook(false)
+    setMail(false)
+  }
+
+  const handleMail = () => {
+    setMail(prev => !prev)
+    setOutlook(false)
+    setOffice(false)
+  }
+
+
+  useEffect(() => {
+    handleOutlook();
+  }, [outlook])
+
 
   return (
     <div className="app">
@@ -32,21 +59,20 @@ function App() {
 
         <div className="btn">
 
-          <Button className="outlook" handleMail={setOutlook} img={out} text="Sign in with Outlook" />
+          <Button className="outlook" handleMail={handleOutlook} img={out} text="Sign in with Outlook" />
 
-          <Button className="office" handleMail={setOffice} img={off} text="Sign in with MSOffice365" />
+          <Button className="office" handleMail={handleOffice} img={off} text="Sign in with MSOffice365" />
 
-          <Button className="mail" handleMail={setMail} img={at} text="Sign in with other email" />
+          <Button className="mail" handleMail={handleMail} img={at} text="Sign in with other email" />
 
           
         </div>
       </div>
 
       {
-        outlook ?
-        <Form header="Login with Outlook" img={out} />:
-        ""
-        
+          outlook ?
+          <Form />
+          : ""      
       }
     </div>
   );

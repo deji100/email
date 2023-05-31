@@ -8,7 +8,7 @@ const Button = (props) => {
     <button 
         className={props.className}
         type="button"
-        onClick={() => props.handleMail(prev => !prev)}>
+        onClick={() => props.handleMail()}>
         <div></div>
         <img src={props.img} alt="logo" />
         {props.text}
