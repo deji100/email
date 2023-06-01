@@ -2,7 +2,6 @@ import React,  {useState} from 'react'
 
 
 const Button = (props) => {
-//   const [mail, setEmail] = useState(false);
 
   return (
     <button 

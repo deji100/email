@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react"
-import logo from './logo.svg';
+import { useState } from "react"
 import inbox from './inbox.jpg'
 import email from './email.jpg'
 import ex from "./ex.png"
 import out from "./out.png"
 import at from "./at.jpg"
 import off from "./office.png"
-import ms2 from "./ms2.png"
 import './App.css';
 import Form from "./form";
 import Button from "./button";
@@ -17,10 +15,6 @@ function App() {
   const [outlook, setOutlook] = useState(false);
   const [office, setOffice] = useState(false);
   const [mail, setMail] = useState(false);
-
-  console.log(outlook)
-  console.log(office)
-  console.log(mail)
 
   const handleOutlook = () => {
     setOutlook(prev => !prev)
@@ -39,11 +33,6 @@ function App() {
     setOutlook(false)
     setOffice(false)
   }
-
-
-  useEffect(() => {
-    handleOutlook();
-  }, [outlook])
 
 
   return (
@@ -71,31 +60,15 @@ function App() {
 
       {
           outlook ?
-          <Form />
-          : ""      
+          <Form img={out} header="Login with Outlook" handleMail={handleOutlook} />
+          : office ?
+          <Form img={off} header="Login with MSOffice365" handleMail={handleOffice} />  
+          : mail ?
+          <Form img={inbox} header="Login with other email" handleMail={handleMail} />
+          : ""
       }
     </div>
   );
 }
 
 export default App;
-
-
-{/* <button className="outlook" type="">
-            <div></div>
-            <img src={out} alt="out" />
-            Sign in with Outlook
-          </button>
-
-          <button className="office" type="">
-            <div></div>
-            <img src={off} alt="office" />
-            Sign in with Office365
-          </button>
-          
-          <button className="mail" type="">
-            <div></div>
-            <div className="wb"></div>
-            <img src={at} alt="mail" />
-            Sign in with Other Mail
-          </button> */}
